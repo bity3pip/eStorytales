@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Book List</title>
-    <link rel="stylesheet" href="{% static 'books/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'general/css/base.css' %}">
 </head>
 <body>
     {% for book in books_list %}
@@ -12,7 +12,7 @@
             <h2>{{ book.title }}</h2>
             <div>
                 <p>{{ book.text | lower }}</p>
-                <img src="{% static 'books/img/image.png' %}" alt="book_image" width="100px" height="100px">
+                <img src="{% static 'general/img/image.png' %}" alt="book_image" width="100px" height="100px">
             </div>
         </div>
     {% endfor %}

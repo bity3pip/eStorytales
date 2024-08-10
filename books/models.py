@@ -6,22 +6,23 @@ from django.contrib.auth.models import User
 class Book(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    author = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='media/books', null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
+    image = models.ImageField(upload_to='media/general', null=True, blank=True)
     year = models.IntegerField()
     number_pages = models.IntegerField()
     rating = models.FloatField()
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    test = models.BooleanField(default=False)
 
     class Meta:
-        db_table = 'books'
+        db_table = 'book'
         ordering = ['title']
 
     def __str__(self):
-        return self.title
+        return f'Book {self.title} {self.id}'
 
     def get_absolute_url(self):
-        return reverse('books:detail', kwargs={'pk': self.pk})
+        return reverse('books', kwargs={'pk': self.pk})
 
 
 class BookReview(models.Model):
@@ -31,3 +32,13 @@ class BookReview(models.Model):
 
     class Meta:
         db_table = 'book_review'
+
+
+class Comment(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    text = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+
+    class Meta:
+        db_table = 'comment'
+        ordering = ['book', 'text']

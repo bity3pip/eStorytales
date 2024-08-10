@@ -8,6 +8,7 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = '__all__'
+        exclude = ['rating']
 
     def save(self, commit=True):
         instance = super(BookForm, self).save(commit=False)
@@ -15,7 +16,7 @@ class BookForm(forms.ModelForm):
         self.instance.save()
         return instance
 
-    def clean(self):
+    def clean_text(self):
         text = self.cleaned_data.get('text')
         if text and len(text) > 500:
             return self.add_error('text', 'Text too long')
