@@ -10,7 +10,7 @@ class Book(models.Model):
     image = models.ImageField(upload_to='media/books', null=True, blank=True)
     year = models.IntegerField()
     number_pages = models.IntegerField()
-    rating = models.IntegerField(default=0)
+    rating = models.FloatField()
     price = models.IntegerField()
 
     class Meta:
