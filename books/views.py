@@ -1,10 +1,8 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, ListView
 from books.forms import BookForm
 from books.models import Book
-
-# Create your views here.
 
 
 def index(request):
@@ -12,24 +10,19 @@ def index(request):
 
 
 def books_list(request):
-    context = {'books_list': [{'title': 'Hello world',
-                               'text': 'Books here'},
-                              {'title': 'Hello world',
-                               'text': 'Books here'},
-                              {'title': 'Hello world',
-                               'text': 'Books here'},
-                              {'title': 'Hello world',
-                               'text': 'Books here'}]}
+    list_books = Book.objects.all()
+    context = {'books_list': list_books}
     return render(request, 'list.html', context=context)
 
 
 def books_add(request):
     if request.method == 'POST':
-        print(request.POST)
         create_form = BookForm(request.POST, request.FILES)
         if create_form.is_valid():
-            create_form.save()
-            return JsonResponse({"text": "Post created successfully."})
+            book = create_form.save(commit=False)
+            book.created_by = request.user
+            book.save()
+            return redirect('books')
         else:
             return JsonResponse(create_form.errors)
     else:
@@ -37,8 +30,8 @@ def books_add(request):
         return render(request, 'create.html', {'form': form})
 
 
-def book_delete(request, post_id):
-    book = Book.objects.get(pk=post_id)
+def book_delete(request, book_id):
+    book = Book.objects.get(pk=book_id)
     book.delete()
     return JsonResponse({"text": "Post deleted successfully."})
 

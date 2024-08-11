@@ -1,18 +1,22 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from books.models import Book
+from books.models import Book, Author
 
 
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ['title', 'author']
         exclude = ['rating']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'author': forms.Select(attrs={'class': 'form-control'}),
+        }
 
     def save(self, commit=True):
         instance = super(BookForm, self).save(commit=False)
-        self.instance.author = User.objects.get(username='author')
+        self.instance.author = User.objects.get(username='Admin')
         self.instance.save()
         return instance
 

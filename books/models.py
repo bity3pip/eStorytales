@@ -3,26 +3,34 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
+class Author(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Book(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
-    image = models.ImageField(upload_to='media/general', null=True, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books_created', default=1)
+    image = models.ImageField(upload_to='books', null=True, blank=True)
     year = models.IntegerField()
     number_pages = models.IntegerField()
-    rating = models.FloatField()
+    rating = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    test = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'book'
         ordering = ['title']
 
     def __str__(self):
-        return f'Book {self.title} {self.id}'
+        return f'Book {self.title}: {self.id}'
 
     def get_absolute_url(self):
-        return reverse('books', kwargs={'pk': self.pk})
+        return reverse('books')
 
 
 class BookReview(models.Model):

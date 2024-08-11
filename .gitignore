@@ -1,7 +1,12 @@
+# Environments
+.env
 .venv
 .idea
-.DS_Store
+
+### Django ###
 db.sqlite3
 media
+
+# staticfiles #
 static/admin
 static/debug_toolbar
