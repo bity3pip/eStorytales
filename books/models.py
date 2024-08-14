@@ -15,7 +15,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books_created', default=1)
+    created_by = models.ForeignKey(User, related_name='books_created', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='books', null=True, blank=True)
     year = models.IntegerField()
     number_pages = models.IntegerField()

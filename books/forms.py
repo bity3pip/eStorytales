@@ -5,10 +5,13 @@ from books.models import Book, Author
 
 
 class BookForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BookForm, self).__init__(*args, **kwargs)
+        self.fields['author'].queryset = Author.objects.all()
+
     class Meta:
         model = Book
-        fields = ['title', 'author']
-        exclude = ['rating']
+        exclude = ['rating', 'created_by']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.Select(attrs={'class': 'form-control'}),
@@ -16,7 +19,7 @@ class BookForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super(BookForm, self).save(commit=False)
-        self.instance.author = User.objects.get(username='Admin')
+        self.instance.author = User.objects.get(username='user')
         self.instance.save()
         return instance
 
@@ -25,3 +28,15 @@ class BookForm(forms.ModelForm):
         if text and len(text) > 500:
             return self.add_error('text', 'Text too long')
         return text
+
+
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = ['name']
+
+    def save(self, commit=True):
+        instance = super(AuthorForm, self).save(commit=False)
+        self.instance.author = User.objects.get(username='user')
+        self.instance.save()
+        return instance

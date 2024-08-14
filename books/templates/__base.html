@@ -5,14 +5,13 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-    <title>Base</title>
+        <title>Base</title>
     {% endblock %}
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
     {% block extracss %}
     {% endblock %}
 </head>
 <body>
-
     <div style="display: flex">
         {% block sidebar %} {% endblock %}
         {% block content %} {% endblock %}

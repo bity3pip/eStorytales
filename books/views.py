@@ -1,8 +1,8 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, ListView
-from books.forms import BookForm
-from books.models import Book
+from books.forms import BookForm, AuthorForm
+from books.models import Book, Author
 
 
 def index(request):
@@ -52,3 +52,24 @@ class BookCreateView(CreateView):
     model = Book
     form_class = BookForm
     template_name = 'create.html'
+
+
+class AuthorCreateView(CreateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = 'create.html'
+
+
+def authors_add(request):
+    if request.method == 'POST':
+        create_form = AuthorForm(request.POST, request.FILES)
+        if create_form.is_valid():
+            author = create_form.save(commit=False)
+            author.created_by = request.user
+            author.save()
+            return redirect('books_create')
+        else:
+            return JsonResponse(create_form.errors)
+    else:
+        form = AuthorForm()
+        return render(request, 'list.html', {'form': form})
