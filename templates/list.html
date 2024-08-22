@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Book List</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-image: url('{% static 'general/img/background-base.jpg' %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+     <div class="container">
+        <div class="row row-cols-4  align-items-stretch g-4 py-5">
+            {% for each in object_list %}
+                <div class="col">
+                     <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="width: 13rem;">
+                        <img src="{{ each.image.url }}" class="card-img-top" alt="books-image">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            <h5 class="card-title lh-1 fw-bold">{{ each.title|slice:":25"}} ...</h5>
+                            <p class="card-text me-auto">${{ each.price|floatformat:2 }}</p>
+                            <a href="{% url 'books-detail' each.id %}" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message.message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

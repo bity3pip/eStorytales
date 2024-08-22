@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>New Author</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Create Author</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% include 'form_author.html' with form=form action='/books/author/create' %}
+    </form>
+{% endblock %}

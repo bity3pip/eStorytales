@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>About Book</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <br>
+    <div class="card mb-3" style="max-width: 840px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ book.image.url }}" class="card-top img-fluid" alt="books-image">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{ object.title }}</h4>
+              <p class="card-text">Author: {{ object.author }}</p><hr>
+              <p class="card-text">{{ object.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <p>Price: $ {{ object.price|floatformat:2 }}</p>
+    <a href="{% url 'books-checkout' object.pk %}" class="btn btn-outline-success" role="button">Buy Now</a>
+
+{% endblock content %}

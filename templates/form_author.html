@@ -1,0 +1,7 @@
+{% block content %}
+    <form action="{{ action }}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

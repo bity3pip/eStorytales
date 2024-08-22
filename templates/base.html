@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% block title %}
+            <title>Base</title>
+        {% endblock %}
+        {% block extracss %}
+            <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        {% endblock %}
+        <link rel="icon" href="{% static 'general/img/logo.ico' %}" type="image/x-ico">
+
+    </head>
+    <body>
+        <header class="p-0 text-bg-dark">
+            <div class="container">
+                <div class="bg-dark d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center  mb-lg-0 text-white text-decoration-none flex-shrink-0">
+                        <img src="{% static 'general/img/logo.png' %}" alt="logo" width="70px" height="70px">
+                    </a>
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                      <li><a href="{% url 'books-list' %}" class="nav-link px-2 text-secondary">Books</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'books-create' %}" class="nav-link px-2 text-secondary">Create Book</a></li>
+                        {% endif %}
+                    </ul>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="get" action="{% url 'search-results' %}">
+                        <span class="flex-grow-1" data-bs-target=""></span>
+                        <input name='q' autocomplete="off" type="search" class="form-control form-control-dark " placeholder="Search..." aria-label="Search">
+                    </form>
+                    <div class="text-end">
+                        {% if request.user.is_authenticated %}
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                 <button type="submit" class="btn btn-outline-light me-2">Log out</button>
+                            </form>
+                        {% else %}
+                            <a type="button" class="btn btn-outline-light me-2" href="{% url 'login' %}">Sign in</a>
+                            <a type="button" class="btn btn-warning" href="{% url 'signup' %}">Sign up</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="toggle-nav-sidebar">
+            {% block sidebar %} {% endblock %}
+        </div>
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div>
+
+    </body>
+
+    <script src="{% static 'general/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'general/js/bootstrap.bundle.min.js'%}" crossorigin="anonymous"></script>
+</html>

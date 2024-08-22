@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>New Book</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Create book</h1>
+    <form method="post" enctype="multipart/form-data">
+        <br>
+        {% csrf_token %}
+        {% include 'form_book.html' with form=form action='/books/create' %}
+
+    </form>
+{% endblock %}

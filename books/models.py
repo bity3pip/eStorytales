@@ -1,11 +1,16 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        default=1
+    )
 
     def __str__(self):
         return self.name
@@ -15,12 +20,12 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, related_name='books_created', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='books', null=True, blank=True)
+    created_by = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='books_created')
+    image = models.ImageField(upload_to='books/', null=True, blank=True)
     year = models.IntegerField()
     number_pages = models.IntegerField()
     rating = models.IntegerField(default=0)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.FloatField(null=True, blank=True)
 
     class Meta:
         db_table = 'book'
@@ -30,7 +35,7 @@ class Book(models.Model):
         return f'Book {self.title}: {self.id}'
 
     def get_absolute_url(self):
-        return reverse('books')
+        return reverse('books-list')
 
 
 class BookReview(models.Model):
@@ -50,3 +55,11 @@ class Comment(models.Model):
     class Meta:
         db_table = 'comment'
         ordering = ['book', 'text']
+
+
+class Order(models.Model):
+    product = models.ForeignKey(Book, max_length=200, null=True, blank=True, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.product.title

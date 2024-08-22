@@ -1,75 +1,106 @@
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
-from django.views.generic import CreateView, ListView
+from django.views.generic import ListView, DeleteView, DetailView
+from books.models import Book, Author, Order
 from books.forms import BookForm, AuthorForm
-from books.models import Book, Author
-
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-
-def books_list(request):
-    list_books = Book.objects.all()
-    context = {'books_list': list_books}
-    return render(request, 'list.html', context=context)
-
-
-def books_add(request):
-    if request.method == 'POST':
-        create_form = BookForm(request.POST, request.FILES)
-        if create_form.is_valid():
-            book = create_form.save(commit=False)
-            book.created_by = request.user
-            book.save()
-            return redirect('books')
-        else:
-            return JsonResponse(create_form.errors)
-    else:
-        form = BookForm()
-        return render(request, 'create.html', {'form': form})
-
-
-def book_delete(request, book_id):
-    book = Book.objects.get(pk=book_id)
-    book.delete()
-    return JsonResponse({"text": "Post deleted successfully."})
+from django.shortcuts import render, redirect
+from django.http import Http404, JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.urls import reverse_lazy
+from django.db.models import Q
+import json
 
 
 class BookListView(ListView):
     model = Book
     template_name = 'list.html'
 
-    def get_queryset(self):
-        filter_name = self.request.GET.get('name')
-        if filter_name:
-            return Book.objects.filter(title__contains=filter_name)
-        else:
-            return Book.objects.all()
 
-
-class BookCreateView(CreateView):
+class BookDetailView(DetailView):
     model = Book
-    form_class = BookForm
-    template_name = 'create.html'
+    template_name = 'detail.html'
 
 
-class AuthorCreateView(CreateView):
-    model = Author
-    form_class = AuthorForm
-    template_name = 'create.html'
+class SearchResultsListView(ListView):
+    model = Book
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Book.objects.filter(Q(title__icontains=query) | Q(author__book__title__icontains=query))
 
 
-def authors_add(request):
+class BookCheckoutView(LoginRequiredMixin, DetailView):
+    model = Book
+    template_name = 'checkout.html'
+    login_url = 'login'
+
+
+def paymentComplete(request):
+    body = json.loads(request.body)
+    print('BODY:', body)
+    product = Book.objects.get(id=body['product_id'])
+    Order.objects.create(
+        product=product)
+    return JsonResponse('Payment Complete!', safe=False)
+
+
+def books_list(request):
+    filter_price = request.GET.get('price')
+    filter_author = request.GET.get('author')
+    filter_name = request.GET.get('name')
+
+    list_books = Book.objects.all()
+
+    if filter_price:
+        list_books = Book.objects.filter(price__gte=filter_price)
+
+    if filter_author:
+        list_books = Author.objects.filter(name=filter_author)
+
+    if filter_name:
+        list_books = Book.objects.filter(title__contains=filter_name)
+
+    context = {'books_list': list_books}
+    return render(request, 'list.html', context=context)
+
+
+@login_required
+def create_book(request):
     if request.method == 'POST':
-        create_form = AuthorForm(request.POST, request.FILES)
-        if create_form.is_valid():
-            author = create_form.save(commit=False)
-            author.created_by = request.user
-            author.save()
-            return redirect('books_create')
+        form = BookForm(request.POST, request.FILES, request=request)
+        if form.is_valid():
+            form.save()
+            return redirect('books-list')
         else:
-            return JsonResponse(create_form.errors)
+            return render(request, 'create_book.html', {'form': form})
     else:
-        form = AuthorForm()
-        return render(request, 'list.html', {'form': form})
+        form = BookForm(request=request)
+        return render(request, 'create_book.html', {'form': form})
+
+
+# class BookCreateFormView(FormView):
+#     model = Book
+#     form_class = BookForm
+#     template_name = 'create_book.html'
+#     success_url = '/books'
+
+
+# class AuthorCreateView(CreateView):
+#     model = Author
+#     form_class = AuthorForm
+#     template_name = 'create_author.html'
+
+
+@login_required
+def create_author(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST, request=request)
+        if form.is_valid():
+            form.save()
+            return redirect('create-book')
+        else:
+            return render(request, 'create_author.html', {'form': form})
+    else:
+        form = AuthorForm(request=request)
+        return render(request, 'create_author.html', {'form': form})

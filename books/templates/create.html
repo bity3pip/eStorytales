@@ -1,8 +1,0 @@
-{#{% extends '__base.html' %}#}
-{% block title %}
-    <title>New Book</title>
-{% endblock %}
-
-{% block content %}
-    {% include 'form_book.html' with form=form action='/books/create' %}
-{% endblock %}
