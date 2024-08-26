@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>About us</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}"
+          crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-5" style="padding-top: 70px;">
+        <div class="title page-item">
+            <h1 class="main-title text-center">About Us</h1>
+        </div>
+        <div class="mobile-content-padding">
+            <div class="row">
+                <div class="col-xs-12 col-md root-staticPage-custom">
+                    <div class="content" data-qazy-container="">
+                        <p><br>
+                            Our online store is designed so that you can conveniently, without unnecessary worries, find
+                            and order what you are
+                            interested in. We make sure that the range in our online store is always up-to-date, prices
+                            are affordable, and the
+                            service is the best.<br>
+                            <br>
+                            We invite you to see for yourself and place an order in our online store. You will be able
+                            to quickly pay and
+                            receive your order. You can find out more about payment and delivery options on the relevant
+                            pages.<br>
+                            <br>
+                            We offer discounts for all regular customers and make sure that you like the online store
+                            and come back to it again
+                            and again.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block search %}
+
+{% endblock %}

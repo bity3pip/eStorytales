@@ -1,0 +1,7 @@
+.picture-fix {
+    position: relative;
+    display: block;
+    height: 170px;
+    margin-bottom: 16px;
+    text-align: center;
+}

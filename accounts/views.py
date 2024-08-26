@@ -1,10 +1,10 @@
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from .forms import CustomUserCreationForm
+from accounts.forms import CustomLoginForm
 
 
 class SignUpView(generic.CreateView):
@@ -21,7 +21,7 @@ def user_login(request):
     if request.user.is_authenticated:
         return redirect('books-list')
 
-    form = AuthenticationForm(request, data=request.POST or None)
+    form = CustomLoginForm(request, data=request.POST or None)
 
     if request.method == 'POST':
         if form.is_valid():
@@ -32,9 +32,9 @@ def user_login(request):
             if user is not None:
                 login(request, user)
 
-                remember = 'remember' in request.POST
+                remember = form.cleaned_data.get('remember')
                 if remember:
-                    request.session.set_expiry(86400)
+                    request.session.set_expiry(604800)
                 else:
                     request.session.set_expiry(0)
 

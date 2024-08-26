@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Contact</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5" style="padding-top: 70px">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Our Contact</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card border-light shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="h4 mb-3">eStorytales</h2>
+                        <p class="card-text">You can find your dream book.</p>
+                        <hr class="my-4">
+                        <h4 class="h5 mb-3">Contact Information</h4>
+                        <p class="card-text"><strong>Our Phone:</strong>+47 (77) 89-01-23</p>
+                        <p class="card-text"><strong>Hours:</strong>Daily from 10:00 a.m. to 9:00 p.m.</p>
+                        <p class="card-text"><strong>Address:</strong>Manhattan, NY 10036</p>
+                        <h4 class="h5 mt-4 mb-3">Organization Details</h4>
+                        <p class="card-text"><strong>Company:</strong> OOO 'PoliconTonV'</p>
+                        <p class="card-text"><strong>Director:</strong>Herr Müller </p>
+                        <p class="card-text"><strong>TIN:</strong> 8549349754, KPP 4657025431</p>
+                        <p class="card-text"><strong>Bank BIC:</strong> 07512312523135548</p>
+                        <p class="card-text"><strong>Bank Account:</strong> 312312300000321031013</p>
+                    </div>
+                </div>
+
+                <div class="card border-light shadow-sm">
+                    <div class="card-body">
+                        <h4 class="h5 mb-3">Other Contacts</h4>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Email:</strong></div>
+                            <div class="col-8"><a href="mailto:estorytales@gmail.com">estorytales@gmail.com</a></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>ICQ:</strong></div>
+                            <div class="col-8">123-422-123</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Skype:</strong></div>
+                            <div class="col-8"><a href="skype:eStoryrales?chat">eStorytales</a></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Accounting:</strong></div>
+                            <div class="col-8">+47 (77) 89-01-23</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4"><strong>Warranty Department:</strong></div>
+                            <div class="col-8">+47 (77) 89-01-23</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block search %}
+
+{% endblock %}

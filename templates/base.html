@@ -2,57 +2,161 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        {% block title %}
-            <title>Base</title>
-        {% endblock %}
-        {% block extracss %}
-            <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        {% endblock %}
-        <link rel="icon" href="{% static 'general/img/logo.ico' %}" type="image/x-ico">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Base</title>
+    {% endblock %}
+    {% block extracss %}
+        <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}"
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+              crossorigin="anonymous">
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'general/img/logo-16x16.png' %}" sizes="16x16" type="image/png">
+    <link rel="icon" href="{% static 'general/img/logo-32x32.png' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'general/img/logo-64x64.png' %}" sizes="64x64" type="image/png">
+    <link rel="icon" href="{% static 'general/img/logo-128x128.png' %}" sizes="128x128" type="image/png">
+    <style>
+        body {
+            background-image: url('{% static 'general/img/v960-ning-31.jpg' %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-    </head>
-    <body>
-        <header class="p-0 text-bg-dark">
-            <div class="container">
-                <div class="bg-dark d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center  mb-lg-0 text-white text-decoration-none flex-shrink-0">
-                        <img src="{% static 'general/img/logo.png' %}" alt="logo" width="70px" height="70px">
-                    </a>
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                      <li><a href="{% url 'books-list' %}" class="nav-link px-2 text-secondary">Books</a></li>
-                        {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'books-create' %}" class="nav-link px-2 text-secondary">Create Book</a></li>
+        .navbar .nav-link {
+            color: #333;
+            position: relative;
+        }
+
+        .navbar .nav-link:hover {
+            color: #007bff;
+        }
+
+        .navbar .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 10px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<script>
+    function scrollToElementIncludeHeader(element, header) {
+        if (header == null) return
+
+        element.scrollIntoView(true);
+        const scrolledY = window.scrollY;
+        const heightHeader = header.offsetHeight;
+        const additionalOffset = 30;
+        if (scrolledY) {
+            window.scroll(0, scrolledY - heightHeader - additionalOffset);
+        }
+    }
+
+    document.documentElement.addEventListener('click', (e) => {
+        const target = e.target.tagName === "A" ? e.target : e.target.closest("a");
+        if (target == null || target.href == null || target.href === "") return
+
+        const urlLink = new URL(target.href);
+        const urlSite = new URL(window.location.href);
+
+        if (urlSite.origin !== urlLink.origin ||
+            urlSite.pathname !== urlLink.pathname ||
+            urlLink.hash.length === 0) {
+            return
+        }
+
+        if (urlSite.search.length > 0) {
+            new URLSearchParams({
+                ...Object.fromEntries(urlSite.searchParams),
+                ...Object.fromEntries(urlLink.searchParams)
+            }).forEach((value, key) => {
+                if (urlLink.searchParams.has(key)) {
+                    urlLink.searchParams.set(key, value)
+                } else {
+                    urlLink.searchParams.append(key, value)
+                }
+            });
+        }
+
+        const valueHash = urlLink.hash.replace('#', '');
+        const element = document.querySelector(`a[name="${valueHash}"]`) || document.getElementById(valueHash);
+
+        if (element == null) return;
+
+        e.preventDefault();
+        window.location.assign(urlLink);
+
+        const header = document.querySelector('header.site-header');
+        let subHeader = document.querySelector('.subheader-wrap');
+        scrollToElementIncludeHeader(element, subHeader != null ? subHeader : header);
+    });
+</script>
+<body>
+    <header class="p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top text-bg-secondary">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img src="{% static 'general/img/logo.png' %}" alt="logo" width="50" height="50" class="me-2">
+                    <span class="fs-4">eStorytales</span>
+                </a>
+                <div class="d-flex justify-content-center flex-grow-1">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        {% if request.user.is_superuser %}
+                            <li class="nav-item">
+                                <a href="{% url 'books-create' %}" class="nav-link px-2 text-white">Create Book</a>
+                            </li>
                         {% endif %}
+                        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="{% url 'payment' %}" class="nav-link">Payment</a></li>
+                        <li class="nav-item"><a href="{% url 'delivery' %}" class="nav-link">Delivery</a></li>
+                        <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
                     </ul>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="get" action="{% url 'search-results' %}">
-                        <span class="flex-grow-1" data-bs-target=""></span>
-                        <input name='q' autocomplete="off" type="search" class="form-control form-control-dark " placeholder="Search..." aria-label="Search">
-                    </form>
-                    <div class="text-end">
-                        {% if request.user.is_authenticated %}
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                 <button type="submit" class="btn btn-outline-light me-2">Log out</button>
-                            </form>
-                        {% else %}
-                            <a type="button" class="btn btn-outline-light me-2" href="{% url 'login' %}">Sign in</a>
-                            <a type="button" class="btn btn-warning" href="{% url 'signup' %}">Sign up</a>
-                        {% endif %}
-                    </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    {% if request.user.is_authenticated %}
+                        <a class="nav-link me-3 position-relative" href="{% url 'card-view' %}">
+                            <i class="fas fa-shopping-cart"></i>
+                            {% if card.total_items > 0 %}
+                                <span class="badge">{{ card.total_items }}</span>
+                            {% endif %}
+                        </a>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-light me-2">Log out</button>
+                        </form>
+                    {% else %}
+                        <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Sign in</a>
+                        <a class="btn btn-warning" href="{% url 'signup' %}">Sign up</a>
+                    {% endif %}
                 </div>
             </div>
-        </header>
-        <div class="toggle-nav-sidebar">
-            {% block sidebar %} {% endblock %}
+        </nav>
+    </header>
+    {% block search %}
+        <div class="container text-center mt-5" style="padding-top: 70px">
+            <form class="d-flex justify-content-center " role="search" method="get" action="{% url 'search-results' %}">
+                <input name="q" autocomplete="off" type="search" class="form-control form-control-dark w-50"
+                       placeholder="Search for books..." aria-label="Search">
+            </form>
         </div>
-        <div class="container">
-            {% block content %} {% endblock %}
-        </div>
+    {% endblock %}
 
-    </body>
+    <div class="toggle-nav-sidebar">
+        {% block sidebar %}{% endblock %}
+    </div>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
 
-    <script src="{% static 'general/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'general/js/bootstrap.bundle.min.js'%}" crossorigin="anonymous"></script>
+<script src="{% static 'general/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'general/js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
 </html>

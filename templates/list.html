@@ -8,24 +8,32 @@
 {% block extracss %}
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
     <style>
-        body {
-            background-image: url('{% static 'general/img/background-base.jpg' %}');
-            background-repeat: no-repeat;
-            background-size: cover;
+        .picture-fix {
+            position: relative;
+            display: block;
+            height: 100%;
+            margin-bottom: 16px;
+            text-align: center;
         }
     </style>
 {% endblock %}
 
 {% block content %}
-     <div class="container">
-        <div class="row row-cols-4  align-items-stretch g-4 py-5">
+    <div class="container">
+        <div class="row row-cols-5  align-items-stretch g-4 py-5">
             {% for each in object_list %}
                 <div class="col">
-                     <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="width: 13rem;">
-                        <img src="{{ each.image.url }}" class="card-img-top" alt="books-image">
-                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                            <h5 class="card-title lh-1 fw-bold">{{ each.title|slice:":25"}} ...</h5>
-                            <p class="card-text me-auto">${{ each.price|floatformat:2 }}</p>
+                    <div class="card card-cover h-100 overflow-hidden text-bg-secondary rounded-4 shadow-lg">
+                        {% if each.image %}
+                            <img src="{{ each.image.url }}" alt="books-image" class="card-img-top picture-fix">
+                        {% endif %}
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white">
+                            {% if each.title|length > 20 %}
+                                <h5 class="card-title lh-1 fw-bold">{{ each.title | slice:':20' }}...</h5>
+                            {% else %}
+                                <h5 class="card-title lh-1 fw-bold">{{ each.title }}</h5>
+                            {% endif %}
+                            <p class="card-text me-auto">€{{ each.price|floatformat:2 }}</p>
                             <a href="{% url 'books-detail' each.id %}" class="btn btn-primary">View</a>
                         </div>
                     </div>

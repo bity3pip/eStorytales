@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}
     <title>About Book</title>
@@ -7,27 +8,238 @@
 
 {% block extracss %}
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .main-content {
+            margin-top: 100px;
+        }
+
+        .book-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .book-details h4 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .book-details p {
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #28a745;
+        }
+
+        .review-section {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .review-form {
+            margin-bottom: 30px;
+        }
+
+        .rating-container {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .rating-star {
+            cursor: pointer;
+            font-size: 32px;
+            color: #e4e5e9;
+        }
+
+        .rating-star.checked .fa-star,
+        .rating-star .fa-star.fas {
+            color: #ffc107;
+        }
+
+        .reviews {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .review-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-item .user-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .review-item .review-text {
+            margin-bottom: 5px;
+        }
+
+        .review-item .review-date {
+            font-size: 12px;
+            color: #6c757d;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-
-    <br>
-    <div class="card mb-3" style="max-width: 840px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="{{ book.image.url }}" class="card-top img-fluid" alt="books-image">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title">{{ object.title }}</h4>
-              <p class="card-text">Author: {{ object.author }}</p><hr>
-              <p class="card-text">{{ object.description }}</p>
+    <div class="container main-content">
+        <div class="book-card">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.title }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="book-details p-3">
+                        <h4>{{ book.title }}</h4>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        <hr>
+                        <p>{{ book.description }}</p>
+                        <p><strong>Average Rating:</strong></p>
+                        {% with average_rating as rating %}
+                            <div class="stars">
+                                {% for i in "12345" %}
+                                    {% if i|add:"0" <= rating %}
+                                        <i class="fas fa-star"></i>
+                                    {% else %}
+                                        <i class="far fa-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endwith %}
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="price">Price: ${{ book.price|floatformat:2 }}</div>
+            <form method="post" action="{% url 'add-to-card' book.pk %}" class="mt-3">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-success btn-block">Add to Cart</button>
+            </form>
         </div>
-      </div>
 
-    <p>Price: $ {{ object.price|floatformat:2 }}</p>
-    <a href="{% url 'books-checkout' object.pk %}" class="btn btn-outline-success" role="button">Buy Now</a>
+        <div class="review-section">
+            <div class="review-form">
+                <h5>Leave a Review</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ review_form.comment.label_tag }}
+                        {{ review_form.comment|add_class:"form-control" }}
+                    </div>
+                    <div class="rating-container mt-3">
+                        {% for i in "12345" %}
+                            <label class="rating-star" data-value="{{ i }}" for="rating-{{ i }}">
+                                <input type="radio" id="rating-{{ i }}" name="rating" value="{{ i }}" hidden>
+                                <span><i class="fas fa-star"></i></span>
+                            </label>
+                        {% endfor %}
+                        <input type="hidden" name="rating" id="selected-rating" value="0">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
 
-{% endblock content %}
+            <div class="reviews">
+                <h5>Reviews</h5>
+                {% for review in reviews %}
+                    <div class="review-item">
+                        <div class="stars">
+                            {% for i in "12345" %}
+                                {% if i|add:"0" <= review.rating %}
+                                    <i class="fas fa-star"></i>
+                                {% else %}
+                                    <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="user-name">{{ review.user.username }}</p>
+                        <p class="review-text">{{ review.comment }}</p>
+                        <div class="review-date">{{ review.created_at|date:"H:i, j F Y" }}</div>
+                    </div>
+                {% empty %}
+                    <p>No reviews yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.rating-star');
+            const ratingInput = document.getElementById('selected-rating');
+            let selectedRating = ratingInput.value;
+
+            stars.forEach(function (star) {
+                star.addEventListener('mouseover', function () {
+                    highlightStars(this.dataset.value);
+                });
+
+                star.addEventListener('click', function () {
+                    selectedRating = this.dataset.value;
+                    ratingInput.value = selectedRating;
+                    highlightStars(selectedRating);
+                });
+
+                star.addEventListener('mouseout', function () {
+                    if (selectedRating) {
+                        highlightStars(selectedRating);
+                    } else {
+                        resetStars();
+                    }
+                });
+            });
+
+            function highlightStars(rating) {
+                stars.forEach(function (star) {
+                    const starValue = parseInt(star.dataset.value, 10);
+                    const starIcon = star.querySelector('i');
+
+                    if (starValue <= rating) {
+                        starIcon.classList.add('fas');
+                        starIcon.classList.remove('far');
+                    } else {
+                        starIcon.classList.add('far');
+                        starIcon.classList.remove('fas');
+                    }
+                });
+            }
+
+            function resetStars() {
+                stars.forEach(function (star) {
+                    const starIcon = star.querySelector('i');
+                    starIcon.classList.add('far');
+                    starIcon.classList.remove('fas');
+                });
+            }
+        });
+
+
+    </script>
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+

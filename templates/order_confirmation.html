@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Order Confirmation</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <style>
+        .confirmation-container {
+            padding: 60px 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 70px;
+        }
+        .confirmation-header {
+            margin-bottom: 30px;
+        }
+        .confirmation-header h2 {
+            font-size: 2rem;
+            color: #343a40;
+        }
+        .confirmation-message {
+            font-size: 1.25rem;
+            color: #495057;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 confirmation-container">
+        <div class="confirmation-header text-center">
+            <h2>Order Confirmation</h2>
+        </div>
+        <div class="text-center confirmation-message">
+            <p>Your order has been placed successfully!</p>
+            <p>Thank you for shopping with us. We will email you confirmation shortly.</p>
+        </div>
+        <div class="text-center">
+            <a href="{% url 'books-list' %}" class="btn btn-primary btn-lg btn-back">Back to Shopping</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block search %}
+{% endblock %}

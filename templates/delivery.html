@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Delivery</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}"
+          crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container my-5" style="padding-top: 70px">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <section id="pickup_general" class="mb-4">
+                    <h2 class="h4 mb-3">Delivery by courier services to the address</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">When an order arrives in your locality, you will be informed by SMS notification or a call from the operator. After that, the delivery service will bring your order.</p>
+                            <p class="card-text">If necessary, you can change the delivery date by agreeing this with the transport service.</p>
+                        </div>
+                        <hr class="my-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Shipping cost</h5>
+                            <p class="card-text">
+                                <span>For orders totaling:</span><br>
+                                <span>up to $10,000</span>— from $350<sup>2</sup><br>
+                                <span>from $10,000 - free<sup>3</sup><sup>,</sup><sup>4</sup></span><br>
+                                <span style="font-style:italic;">*Free shipping terms do not apply to large items.</span>
+                            </p>
+                            <h5 class="card-title">Delivery term</h5>
+                            <p class="card-text">1 to 20 business days after the order is transferred for delivery. Delivery time depends on the region, all orders are shipped from a warehouse in New York City.</p>
+                            <h5 class="card-title">Delivery time:</h5>
+                            <p class="card-text">Monday - Friday from 09:00 to 18:00<br>On weekends and holidays, delivery is carried out according to the schedule of transport companies.</p>
+                            <h5 class="card-title">Payment method</h5>
+                            <p class="card-text">You can pay for your order online or upon receipt.<br><a href="{% url 'payment' %}" class="btn btn-link">Learn more about payment methods.</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pickup_msk" class="mb-4">
+                    <h2 class="h4 mb-3">Pickup from showroom in New York City</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">You can pick up your purchases yourself after the manager confirms the availability of the goods.</p>
+                            <p class="card-text">The showroom is located at the following address: Manhattan, NY 10036</p>
+                        </div>
+                        <hr class="my-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Pickup hours:</h5>
+                            <p class="card-text">Daily from 10:00 a.m. to 9:00 p.m.</p>
+                            <h5 class="card-title">Shipping cost</h5>
+                            <p class="card-text">Free</p>
+                            <h5 class="card-title">Payment method</h5>
+                            <p class="card-text">You can pay for your order online, in cash or by bank card.</p>
+                        </div>
+                    </div>
+                    <div class="blockquote mt-4">
+                        <h5 class="h5">Please note:</h5>
+                        <ul class="list-unstyled">
+                            <li>To receive an order pre-paid on the website of the online store, you must have a PASSPORT. In the absence of the recipient's passport, the courier has the right to refuse to issue the order.</li>
+                            <li>If you need to change the recipient's name after placing your order, please contact us by phone: <a href="tel:4777890123">+47 778 901 23</a>. Otherwise, the courier has the right to refuse to issue the order to a person not specified as the recipient when placing the order.</li>
+                            <li>Partial redemption of an order upon delivery by transport companies is not provided.</li>
+                            <li>Upon receipt of the order, please check the integrity of the packaging. Orders are delivered in a packaging bag or in a box sealed with tape. The outer packaging may have minor defects due to the peculiarities of transportation and not affecting the quality of the goods. Also, check for the absence of external damage to the goods and their completeness in the presence of the courier. Unfortunately, we will not be able to accept a claim for the presence of external damage to the goods, as well as claims for the completeness of the goods/order after you have signed the documents on acceptance of the order.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="card-footer mt-4">
+                    <ol>
+                        <li><sup>1</sup> In some cases, the shipping cost cannot be calculated automatically and when placing an order, the "Intercity delivery" shipping method appears. Please select this shipping method to complete your order. Our employee will contact you and calculate the shipping cost of your order.</li>
+                        <li><sup>2</sup> Subject to advance payment of the order.</li>
+                    </ol>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block search %}
+
+{% endblock %}

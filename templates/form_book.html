@@ -3,8 +3,7 @@
         {% csrf_token %}
         <div>
             {{ form }}
-             <a href="{% url 'books-create-author' %}" target="_blank">Create new author</a>
+            <a href="{% url 'books-create-author' %}" target="_blank">Create new author</a>
         </div>
-        <button type="submit">Save</button>
     </form>
 {% endblock %}

@@ -1,19 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    <title>Search book</title>
-{% endblock title %}
+    <title>Search Results</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <style>
+        .search-results-container {
+            padding: 2rem 0;
+        }
+        .search-result-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .search-result-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .search-result-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        .search-result-card p {
+            margin-bottom: 0;
+            color: #555;
+        }
+        .no-results {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
-    <h3 class = "text-secondary">Search Results</h3><hr>
+    <div class="container search-results-container">
+        <h3 class="text-secondary">Search Results</h3>
+        <hr>
 
-    {% for every in object_list %}
-        <div>
-            <h3><a href="{% url 'books-detail' every.pk %}">{{ every.title }}</a></h3>
-            <p>Author: {{ every.author }}</p>
+        {% for every in object_list %}
+            <div class="search-result-card">
+                <h3><a href="{% url 'books-detail' every.pk %}" class="text-primary">{{ every.title }}</a></h3>
+                <p>Author: <strong>{{ every.author.name }}</strong></p>
+            </div>
+        {% empty %}
+            <h5 class="no-results">Found nothing</h5>
+        {% endfor %}
+
+        <div class="mt-4">
+            <a href="{% url 'books-list' %}" class="btn btn-outline-secondary">Back to Home</a>
         </div>
-    {% empty %}
-        <h5 class="text-danger">Found nothing</h5>
-    {% endfor %}
-
-{% endblock content %}
+    </div>
+{% endblock %}

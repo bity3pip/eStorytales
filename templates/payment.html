@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Payment</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+{% endblock %}
+
+{% block content %}
+       <div class="container my-5" style="padding-top: 70px">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <section>
+                    <div class="mb-4">
+                        <h2 class="display-4 mb-3">Secure and Convenient Payment</h2>
+                        <div class="card border-light shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">Pay with confidence using a variety of secure payment methods, including PayPal, Visa, Mastercard, and Google Pay. Your transactions are protected by 3D Secure and tokenization technologies, ensuring your data is safe. We are also PCI DSS compliant for the highest level of security.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h2 class="display-4 mb-3">Easy and Secure Checkout</h2>
+                        <div class="card border-light shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">Enjoy a seamless checkout experience with our multiple payment options. Choose from PayPal, Visa, Mastercard, or Google Pay. Your payment details are encrypted and securely processed using the latest security protocols, including 3D Secure and tokenization.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h2 class="display-4 mb-3">Your Security is Our Priority</h2>
+                        <div class="card border-light shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">Shop with peace of mind knowing your payments are protected. We employ industry-leading security measures such as 3D Secure and tokenization to safeguard your financial information. As a PCI DSS compliant company, we adhere to the highest standards for data security.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block search %}
+
+{% endblock %}

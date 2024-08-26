@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Shopping Cart</title>
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <style>
+        .main-content {
+            margin-top: 100px;
+        }
+
+        .cart-header {
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .list-group-item {
+            border-radius: 0.5rem;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-group-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline-success {
+            border-color: #28a745;
+            color: #28a745;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .total-info {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .empty-cart {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #6c757d;
+        }
+
+        .quantity-input {
+            width: 80px;
+        }
+
+        .btn {
+            margin-left: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container main-content">
+        <div class="cart-header">
+            <h1 class="text-success">Shopping Cart</h1>
+        </div>
+        {% if card.card_items.count > 0 %}
+            <ul class="list-group mb-4">
+                {% for item in card.card_items.all %}
+                    <li class="list-group-item">
+                        <span>{{ item.book.title }}</span>
+                        <div class="d-flex align-items-center">
+                            <form method="post" action="{% url 'update-quantity' item.book.id %}">
+                                {% csrf_token %}
+                                <label for="quantity-{{ item.book.id }}">
+                                    <input id="quantity-{{ item.book.id }}" type="number" name="quantity"
+                                           value="{{ item.quantity }}" min="1" class="form-control quantity-input">
+                                </label>
+                                <button type="submit" class="btn btn-outline-success btn-sm ms-2">Update</button>
+                            </form>
+                            <a href="{% url 'remove-from-card' item.book.id %}" class="btn btn-danger btn-sm ms-2">Remove</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p class="total-info">Total items: {{ card.total_items }}</p>
+            <p class="total-info">Total price: €{{ card.total_price | floatformat:2 }}</p>
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'books-checkout' %}" class="btn btn-outline-success" role="button">Proceed to Checkout</a>
+                <a href="{% url 'books-list' %}" class="btn btn-outline-success" role="button">Continue Shopping</a>
+            </div>
+        {% else %}
+            <p class="empty-cart">Your cart is empty.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block search %}
+{% endblock %}

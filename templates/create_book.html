@@ -1,14 +1,114 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     <title>New Book</title>
 {% endblock %}
 
-{% block content %}
-    <h1>Create book</h1>
-    <form method="post" enctype="multipart/form-data">
-        <br>
-        {% csrf_token %}
-        {% include 'form_book.html' with form=form action='/books/create' %}
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}"
+          crossorigin="anonymous">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 70px auto 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    </form>
+        .form-container h1 {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-container .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-container .form-control {
+            border-radius: 5px;
+        }
+
+        .form-container .form-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .author-select-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-select-container a {
+            white-space: nowrap;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .author-select-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Create book</h1>
+        <form action="{{ action }}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                <label for="id_author">Author</label>
+                <div class="author-select-container">
+                    {{ form.author }}
+                    <a href="{% url 'books-create-author' %}" target="_blank">Create new author</a>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+            <div class="form-group">
+                {{ form.year.label_tag }}
+                {{ form.year }}
+            </div>
+            <div class="form-group">
+                {{ form.number_pages.label_tag }}
+                {{ form.number_pages }}
+            </div>
+            <div class="form-group">
+                {{ form.price.label_tag }}
+                {{ form.price }}
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}}
+
+{% block search %}
 {% endblock %}

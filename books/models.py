@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.functions import Now
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -39,27 +40,71 @@ class Book(models.Model):
 
 
 class BookReview(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    text = models.CharField(max_length=500)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    rating = models.IntegerField(choices=[(i, i) for i in range(6)], default=0)
+    comment = models.TextField(max_length=500, blank=True)
+    created_at = models.DateTimeField(db_default=Now())
 
     class Meta:
         db_table = 'book_review'
 
-
-class Comment(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    text = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-
-    class Meta:
-        db_table = 'comment'
-        ordering = ['book', 'text']
+    def __str__(self):
+        return f'{self.book.title} - {self.user.username}'
 
 
 class Order(models.Model):
-    product = models.ForeignKey(Book, max_length=200, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey('Book', on_delete=models.CASCADE, null=True, blank=True)
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    country = models.CharField(max_length=100, null=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    postal_code = models.CharField(max_length=20, null=True, blank=True)
+    card_number = models.CharField(max_length=16, null=True, blank=True)
+    card_cvv = models.CharField(max_length=3, null=True, blank=True)
+    expiry_date = models.CharField(max_length=5, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.product.title
+        return f'Order {self.id} by {self.first_name} {self.last_name}'
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.quantity} of {self.book.title}'
+
+
+class Card(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField('CardItem', related_name='cards', blank=True)
+
+    @property
+    def total_price(self):
+        return sum(item.book.price * item.quantity for item in self.items.all())
+
+    @property
+    def total_items(self):
+        return sum(item.quantity for item in self.items.all())
+
+    def update_quantity(self, book, quantity):
+        card_item, created = CardItem.objects.get_or_create(card=self, book=book)
+        if quantity <= 0:
+            card_item.delete()
+        else:
+            card_item.quantity = quantity
+            card_item.save()
+
+
+class CardItem(models.Model):
+    card = models.ForeignKey(Card, on_delete=models.CASCADE, default=1, related_name='card_items')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f'{self.quantity} {self.book.title}'
