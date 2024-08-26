@@ -93,7 +93,7 @@ def checkout_view(request):
                     )
 
                     print(f"OrderItem created for book: {card_item.book.title}")
-                    card.items.all().delete()
+                card.items.all().delete()
                 return redirect('complete-order')
             except Exception as e:
                 print(f"Error: {e}")

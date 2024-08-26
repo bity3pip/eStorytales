@@ -232,7 +232,6 @@ class CheckoutViewTest(TestCase):
 
         order_items = OrderItem.objects.filter(order=order)
         print(f"OrderItems count: {order_items.count()}")
-
         for item in order_items:
             print(f"OrderItem: Book - {item.book.title}, Quantity - {item.quantity}")
 
