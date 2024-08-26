@@ -8,7 +8,7 @@ class BookFormTests(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(username='test_user', password='12345')
-        self.author = Author.objects.create(name='Author Name')
+        self.author = Author.objects.create(name='Author Name',  created_by=self.user)
         self.request = RequestFactory().get('/')
         self.request.user = self.user
 
@@ -125,7 +125,11 @@ class BookReviewFormTests(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(username='test_user', password='12345')
+        self.assertIsNotNone(self.user.pk)
+
         self.author = Author.objects.create(name='Author Name')
+        self.assertIsNotNone(self.author.pk)
+
         self.book = Book.objects.create(
             title='Test Book',
             author=self.author,
@@ -135,6 +139,8 @@ class BookReviewFormTests(TestCase):
             year=2024,
             created_by=self.user
         )
+        self.assertIsNotNone(self.book.pk)
+
         self.request = RequestFactory().get('/')
         self.request.user = self.user
 
@@ -160,3 +166,5 @@ class BookReviewFormTests(TestCase):
             self.assertEqual(review.rating, 5)
             self.assertEqual(review.book, self.book)
             self.assertEqual(review.user, self.user)
+        else:
+            print(form.errors)

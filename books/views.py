@@ -6,6 +6,7 @@ from books.forms import BookForm, AuthorForm, OrderForm, BookReviewForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
 from django.db.models import Q, Avg
 
 
@@ -34,6 +35,7 @@ class BookDetailView(DetailView):
 
         return context
 
+    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = BookReviewForm(request.POST)

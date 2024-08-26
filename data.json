@@ -1,0 +1,1035 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2024-08-25T16:58:34.836Z",
+      "user": 3,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "BookReview object (1)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2024-08-26T00:12:52.978Z",
+      "user": 3,
+      "content_type": 11,
+      "object_id": "1",
+      "object_repr": "Order 1 by test test",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2024-08-26T01:42:38.599Z",
+      "user": 3,
+      "content_type": 11,
+      "object_id": "10",
+      "object_repr": "Order 10 by test test",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2024-08-26T01:47:23.680Z",
+      "user": 3,
+      "content_type": 11,
+      "object_id": "11",
+      "object_repr": "Order 11 by Alex Alix",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2024-08-26T01:47:42.361Z",
+      "user": 3,
+      "content_type": 11,
+      "object_id": "9",
+      "object_repr": "Order 9 by test test",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2024-08-26T01:47:57.363Z",
+      "user": 3,
+      "content_type": 12,
+      "object_id": "3",
+      "object_repr": "Card object (3)",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2024-08-26T01:48:14.416Z",
+      "user": 3,
+      "content_type": 4,
+      "object_id": "7",
+      "object_repr": "TestSignUp",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2024-08-26T01:48:18.058Z",
+      "user": 3,
+      "content_type": 4,
+      "object_id": "1",
+      "object_repr": "TestUser",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2024-08-26T01:48:21.363Z",
+      "user": 3,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "TestUser1",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2024-08-26T01:48:24.791Z",
+      "user": 3,
+      "content_type": 4,
+      "object_id": "8",
+      "object_repr": "testuser",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add author",
+      "content_type": 7,
+      "codename": "add_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change author",
+      "content_type": 7,
+      "codename": "change_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete author",
+      "content_type": 7,
+      "codename": "delete_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view author",
+      "content_type": 7,
+      "codename": "view_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add book",
+      "content_type": 8,
+      "codename": "add_book"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change book",
+      "content_type": 8,
+      "codename": "change_book"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete book",
+      "content_type": 8,
+      "codename": "delete_book"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view book",
+      "content_type": 8,
+      "codename": "view_book"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add book review",
+      "content_type": 9,
+      "codename": "add_bookreview"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change book review",
+      "content_type": 9,
+      "codename": "change_bookreview"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete book review",
+      "content_type": 9,
+      "codename": "delete_bookreview"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view book review",
+      "content_type": 9,
+      "codename": "view_bookreview"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add comment",
+      "content_type": 10,
+      "codename": "add_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change comment",
+      "content_type": 10,
+      "codename": "change_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete comment",
+      "content_type": 10,
+      "codename": "delete_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view comment",
+      "content_type": 10,
+      "codename": "view_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add order",
+      "content_type": 11,
+      "codename": "add_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change order",
+      "content_type": 11,
+      "codename": "change_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete order",
+      "content_type": 11,
+      "codename": "delete_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view order",
+      "content_type": 11,
+      "codename": "view_order"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add card",
+      "content_type": 12,
+      "codename": "add_card"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change card",
+      "content_type": 12,
+      "codename": "change_card"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete card",
+      "content_type": 12,
+      "codename": "delete_card"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view card",
+      "content_type": 12,
+      "codename": "view_card"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add card item",
+      "content_type": 13,
+      "codename": "add_carditem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change card item",
+      "content_type": 13,
+      "codename": "change_carditem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete card item",
+      "content_type": 13,
+      "codename": "delete_carditem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view card item",
+      "content_type": 13,
+      "codename": "view_carditem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+      "name": "Can add order item",
+      "content_type": 14,
+      "codename": "add_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+      "name": "Can change order item",
+      "content_type": 14,
+      "codename": "change_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+      "name": "Can delete order item",
+      "content_type": 14,
+      "codename": "delete_orderitem"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+      "name": "Can view order item",
+      "content_type": 14,
+      "codename": "view_orderitem"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$720000$RD55l8tBGupMSgazSha2Ab$4gehQMyMxfRZGVsheWBOP37MkqKy0cExZvfX/573cn0=",
+      "last_login": "2024-08-26T02:58:54.163Z",
+      "is_superuser": true,
+      "username": "Admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-08-14T12:28:30.189Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "books",
+      "model": "author"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "books",
+      "model": "book"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "books",
+      "model": "bookreview"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "books",
+      "model": "comment"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "books",
+      "model": "order"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "books",
+      "model": "card"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "app_label": "books",
+      "model": "carditem"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+      "app_label": "books",
+      "model": "orderitem"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "2kltzqf3rdqy0frsi13joo4ugsplpi53",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hCwRZgu3XsGAsyMRQ2Y0iYa4921SRe6_e_99xI-LPPol0aTzygG0Ynd7xZDulJZAV5COVeZapmnHOWqyI02eapIt-Pm_gXG0Mbv2_R7Y63V3DmEPrI2gOwAOCEqg6FTQTNEk6J2wETgGBRa4-yBrU5pjTZqLdfi6XHP01MM6v0BkCg_dQ:1siPwU:k_d-V3fOwsb_vUCnCxWPm-oBeiUITT0iab-JhjjVbeo",
+      "expire_date": "2024-09-09T02:58:54.171Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "45gspipdbed24cp8cysqaaxmstal0055",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hCwRZgu3XsGAsyMRQ2Y0iYa4921SRe6_e_99xI-LPPol0aTzygG0Ynd7xZDulJZAV5COVeZapmnHOWqyI02eapIt-Pm_gXG0Mbv2_R7Y63V3DmEPrI2gOwAOCEqg6FTQTNEk6J2wETgGBRa4-yBrU5pjTZqLdfi6XHP01MM6v0BkCg_dQ:1shEJO:63WznOanyhal7SAjLGsntCiqirdXHOWTClzGXaGNxrI",
+      "expire_date": "2024-09-05T20:21:38.359Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "dacf4z2scjjbab3442yq7ywno6knak5d",
+    "fields": {
+      "session_data": ".eJxVjMEOwiAQRP-FsyFsBUt79O43kGXZCmqgKW2iMf67bdKDniaZefPewuEyR7dUnlwKohcgDr-dR7pz3oZww3wtkkqep-Tlhsh9rfJSAj_OO_sniFjj-m4ZCTywQgOgPVijG4OghoBHNAEaY7lVxIaGTgcevEVeA4lOnVVebdLKtaaSHT_HNL1Erz5ftfdAQQ:1sh9Ft:gitS093o5BgLUjEiO9BYpa1Vmhd_fgLgqyiZmx-eEZM",
+      "expire_date": "2024-09-05T14:57:41.731Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "mwc8e73mt4kdnrtdcutgah5ondnx5p21",
+    "fields": {
+      "session_data": "e30:1sfQU8:_RYa17s42ZSFRbVlENrhMLhmfk2M26TjA5qNahZv9D4",
+      "expire_date": "2024-08-31T20:57:16.872Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "omx1yy164tq4mpigfwtyc43e9ehft4pk",
+    "fields": {
+      "session_data": "e30:1sf0ex:pNzW3yQo6BOjoD1W-Vbjh7t-PHGdLAF5qUavV4v4jLo",
+      "expire_date": "2024-08-30T17:22:43.024Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "saedzaah62nckha2qmojhkpvjbpu927x",
+    "fields": {
+      "session_data": ".eJxVjMEOwiAQRP-FsyFsBUs9eu83kN1lkaqBpLQn47_bJj3oaZJ5b-atAq5LDmuTOUxRXRWo029HyE8pO4gPLPequZZlnkjvij5o02ON8rod7t9Bxpa3dS_IQCAGHYAl8M52DsGkiGd0ETrnpTcsjtNgoyTyKFsg82Xwhoz6fAH3UTkE:1sfQV0:T-AaREWPPaJZG12Z075fMg6STnZxNXcHzzmUYcdxw2g",
+      "expire_date": "2024-08-31T20:58:10.668Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "tadth67vs3bg3ov6i2a7knh3mhwrbmke",
+    "fields": {
+      "session_data": ".eJxVjMEOwiAQRP-FsyFsBUs9eu83kN1lkaqBpLQn47_bJj3oaZJ5b-atAq5LDmuTOUxRXRWo029HyE8pO4gPLPequZZlnkjvij5o02ON8rod7t9Bxpa3dS_IQCAGHYAl8M52DsGkiGd0ETrnpTcsjtNgoyTyKFsg82Xwhoz6fAH3UTkE:1sf0ft:LiCDiSaNxSFujeXxl_JHMhtWNGDzbrW-EPA9ODVBDCM",
+      "expire_date": "2024-08-30T17:23:41.163Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "u31861jexrsfnov1l3nh24mhywuxm0a0",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hCwRZgu3XsGAsyMRQ2Y0iYa4921SRe6_e_99xI-LPPol0aTzygG0Ynd7xZDulJZAV5COVeZapmnHOWqyI02eapIt-Pm_gXG0Mbv2_R7Y63V3DmEPrI2gOwAOCEqg6FTQTNEk6J2wETgGBRa4-yBrU5pjTZqLdfi6XHP01MM6v0BkCg_dQ:1sh8gb:iraYRrETviV06Jt4yDfXTTjP7ULdxYIvkvjUW0EKWSo",
+      "expire_date": "2024-09-05T14:21:13.945Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "xbg8ghwddwyn1vp1j3nmwwptmpv1wg28",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hCwHYdx6d4zEGAYqRpISrsy3l2bdKHb_977L-XDuhS_9jz7idVZDerwu8WQHrlugO-h3ppOrS7zFPWm6J12fW2cn5fd_TsooZdvDeMRENHK4JjGKBaIxRFJYjbAYTDBCkVI0TqSnMkJGUZweBK0Kan3B-FyODg:1sf10h:wGRNc8xaqqXPXYVJ78e8fOyX1_p_8RG6oz0WUHs-fSA",
+      "expire_date": "2024-08-30T17:45:11.929Z"
+    }
+  },
+  {
+    "model": "books.author",
+    "pk": 1,
+    "fields": {
+      "name": "Joanne Rowling",
+      "created_by": 3
+    }
+  },
+  {
+    "model": "books.author",
+    "pk": 2,
+    "fields": {
+      "name": "Erika James",
+      "created_by": 3
+    }
+  },
+  {
+    "model": "books.author",
+    "pk": 3,
+    "fields": {
+      "name": "Rudyard Kipling",
+      "created_by": 3
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "description": "rry Potter has never played a sport while flying on a broomstick. He's never worn a Cloak of Invisibility, befriended a half-giant, or helped hatch a dragon. All Harry knows is a miserable life with the Dursleys: his horrible aunt and uncle and their abominable son, Dudley. Harry's room is a tiny Cupboard Under the Stairs, he hasn't had a birthday party in ten years, and his birthday present is his uncle's old socks.\r\nBut all that is about to change when a mysterious letter arrives by owl messenger. A letter with an invitation to a wonderful place he never dreamed existed. There he finds not only friends, aerial sports, and magic around every corner, but a great destiny that's been waiting for him... if Harry can survive the encounter.",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/1.jpg",
+      "year": 1997,
+      "number_pages": 233,
+      "rating": 0,
+      "price": 9.99
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "title": "Harry Potter and the Chamber of Secrets",
+      "description": "Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School of Witchcraft and Wizardry. But just as he is packing his bags, Harry receives a warning from a strange impish creature who says that if Harry returns to Hogwarts, disaster will strike.\r\n\r\nAnd strike it does. For in Harry's second year at Hogwarts, fresh torments and horrors arise, including an outrageously stuck-up new professor and a spirit who haunts the girl's bathroom. But then the real trouble begins - something is attacking Hogwarts students, making them rigid like statues. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past reveals dark secrets? Or could it be the one everyone at Hogwarts most suspects ... Harry Potter himself!",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/2_73hfpHk.jpg",
+      "year": 1998,
+      "number_pages": 251,
+      "rating": 0,
+      "price": 7.99
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "description": "Harry Potter is lucky to reach the age of thirteen, since he has already survived the murderous attacks of the feared Dark Lord on more than one occasion. But his hopes for a quiet term concentrating on Quidditch are dashed when a maniacal mass-murderer escapes from Azkaban, pursued by the soul-sucking Dementors who guard the prison. It's assumed that Hogwarts is the safest place for Harry to be. But is it a coincidence that he can feel eyes watching him in the dark, and should he be taking Professor Trelawney's ghoulish predictions seriously?",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/3_l11ttVh.jpg",
+      "year": 1999,
+      "number_pages": 317,
+      "rating": 0,
+      "price": 9.49
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+      "title": "Harry Potter and the Goblet of Fire",
+      "description": "Harry Potter is in his fourth year at Hogwarts. Harry wants to get away from the pernicious Dursleys and go to the Quidditch World Cup with Hermione, Ron, and the Weasleys. He wants to find out about the mysterious event to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn't happened for hundreds of years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he's not normal - not even by Wizarding standards. And in his case, different can be deadly.",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/4_4aliZgG.png",
+      "year": 2000,
+      "number_pages": 636,
+      "rating": 0,
+      "price": 10.09
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 5,
+    "fields": {
+      "title": "Harry Potter and the Order of the Phoenix",
+      "description": "...Harry Potter is in his fifth year at Hogwarts School as the adventures continue. There is a door at the end of a silent corridor. And it's haunting Harry Potter's dreams. Why else would he be waking in the middle of the night, screaming in terror? Harry has a lot on his mind for this, his fifth year at Hogwarts: a Defence Against the Dark Arts teacher with a personality like poisoned honey; a big surprise on the Gryffindor Quidditch team; and the looming terror of the Ordinary Wizarding Level exams.\r\n\r\nBut all these things pale next to the growing threat of He-Who-Must-Not-Be-Named, one that neither the magical government nor the authorities at Hogwarts can stop. As the grasp of darkness tightens, Harry must discover the true depth and strength of his friends, the importance of boundless loyalty, and the shocking price of unbearable sacrifice. His fate depends on them all.\r\n\r\n\r\nThe book that took the world by storm. In his fifth year at Hogwarts, Harry faces challenges at every turn, from the dark threat of He-Who-Must-Not-Be-Named and the unreliability of the government of the magical world to the rise of Ron Weasley as the Keeper of the Gryffindor Quidditch Team. Along the way he learns about the strength of his friends, the fierceness of his enemies, and the meaning of sacrifice....",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/5_vaOV6Mf.jpg",
+      "year": 2003,
+      "number_pages": 766,
+      "rating": 0,
+      "price": 13.33
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 6,
+    "fields": {
+      "title": "Harry Potter and the Half-Blood Prince",
+      "description": "It is Harry Potter 's sixth year at Hogwarts School of Witchcraft and Wizardry. As Voldemort's sinister forces amass and a spirit of gloom and fear sweeps the land, it becomes more and more clear to Harry that he will soon have to confront his destiny. But is he up to the challenges ahead of him?",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/6_7eoVvPm.png",
+      "year": 2005,
+      "number_pages": 607,
+      "rating": 0,
+      "price": 10.09
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 7,
+    "fields": {
+      "title": "Harry Potter and the Deathly Hallows",
+      "description": "...Harry is waiting in Privet Drive. The Order of the Phoenix is coming to escort him safely away without Voldemort and his supporters knowing - if they can. But what will Harry do then? How can he fulfil the momentous and seemingly impossible task that Professor Dumbledore has left him?\r\n\r\n\r\nAs he travels Harry discovers that a battle is breaking out at Hogwarts. He has to do anything to stop it even if that involves killing himself...",
+      "author": 1,
+      "created_by": 3,
+      "image": "books/7_2t75794.jpg",
+      "year": 2007,
+      "number_pages": 607,
+      "rating": 0,
+      "price": 8.24
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 8,
+    "fields": {
+      "title": "Fifty Shades of Grey",
+      "description": "When literature student Anastasia Steele goes to interview young entrepreneur Christian Grey, she encounters a man who is beautiful, brilliant, and intimidating. The unworldly, innocent Ana is startled to realize she wants this man and, despite his enigmatic reserve, finds she is desperate to get close to him. Unable to resist Ana’s quiet beauty, wit, and independent spirit, Grey admits he wants her, too—but on his own terms. \r\n  \r\nShocked yet thrilled by Grey’s singular erotic tastes, Ana hesitates. For all the trappings of success—his multinational businesses, his vast wealth, his loving family—Grey is a man tormented by demons and consumed by the need to control. When the couple embarks on a daring, passionately physical affair, Ana discovers Christian Grey’s secrets and explores her own dark desires.",
+      "author": 2,
+      "created_by": 3,
+      "image": "books/11_yBRWxzV.jpg",
+      "year": 2011,
+      "number_pages": 514,
+      "rating": 0,
+      "price": 9.39
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 9,
+    "fields": {
+      "title": "Fifty Shades Darker",
+      "description": "In \"\"Fifty Shades Darker\"\" by E.L. James, the intense and passionate relationship between Christian Grey and Anastasia Steele evolves as they navigate new emotional and psychological complexities. After their initial breakup, Anastasia returns to Christian, who is determined to show her a different side of his world. The couple confronts their pasts, face threats from Christian’s former lovers, and explore deeper dimensions of their desires. As they attempt to reconcile their differences, they encounter challenges that test their love and commitment, revealing both vulnerabilities and strength.",
+      "author": 2,
+      "created_by": 3,
+      "image": "books/12_0q226IF.jpg",
+      "year": 2012,
+      "number_pages": 544,
+      "rating": 0,
+      "price": 6.26
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 10,
+    "fields": {
+      "title": "Fifty Shades Freed",
+      "description": "In \"\"Fifty Shades Freed\"\" by E.L. James, Anastasia Steele and Christian Grey’s tumultuous romance reaches its climax as they marry and embark on a new chapter of their lives. The couple faces challenges from Christian’s past and external threats, testing their bond and commitment. As they navigate the complexities of married life and face personal and professional hurdles, their love is put to the ultimate test. The story delves into themes of trust, loyalty, and resilience as they fight to build a future together.\",books/13.png,2012,592,0,15,3,9.49\r\n32,Mary Poppins,\"Mary Poppins, the first novel in a series of children's books written by P.L. Travers, published in 1934. The titular character is a sensible English nanny with magical powers, and the work uses mythological allusion and biting social critique to explore the fraught relationship between children and adults.",
+      "author": 2,
+      "created_by": 3,
+      "image": "books/13_sJJDBR9.png",
+      "year": 2015,
+      "number_pages": 208,
+      "rating": 0,
+      "price": 5.94
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 11,
+    "fields": {
+      "title": "The Jungle Book",
+      "description": "The Jungle Book by Rudyard Kipling is an adventure story about a man-cub named Mowgli. Mowgli is hunted by an evil tiger named Shere Khan. Mowgli tries to live a peaceful life with other humans, but is too wild for them and too human for the wolves. Eventually Mowgli finds a home in the jungle with a pack of his own.",
+      "author": 3,
+      "created_by": 3,
+      "image": "books/JunglebookCover_NeYRK8g.jpg",
+      "year": 1894,
+      "number_pages": 170,
+      "rating": 0,
+      "price": 8.95
+    }
+  },
+  {
+    "model": "books.card",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "items": []
+    }
+  }
+]
