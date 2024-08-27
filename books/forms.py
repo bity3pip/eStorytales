@@ -47,10 +47,12 @@ class AuthorForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
+    book_ids = forms.CharField(widget=forms.HiddenInput(), required=True)
+
     class Meta:
         model = Order
         fields = ['first_name', 'last_name', 'address', 'country',
-                  'city', 'postal_code', 'card_number', 'card_cvv', 'expiry_date']
+                  'city', 'postal_code', 'card_number', 'card_cvv', 'expiry_date', 'book_ids']
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
@@ -63,6 +65,12 @@ class OrderForm(forms.ModelForm):
             'card_cvv': forms.NumberInput(attrs={'class': 'form-control', 'maxlength': '3', 'placeholder': 'CVV'}),
             'expiry_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'MM/YY'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'initial' in kwargs:
+            initial = kwargs['initial']
+            self.fields['book_ids'].initial = initial.get('book_ids', '')
 
 
 class BookReviewForm(forms.ModelForm):

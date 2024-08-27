@@ -7,15 +7,18 @@ admin.site.register(BookReview)
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'first_name', 'last_name', 'created', 'get_product')
+    list_display = ('id', 'user', 'first_name', 'last_name', 'created', 'get_books_list')
+    readonly_fields = ('get_books_list',)
     list_filter = ('created', 'user')
-    search_fields = ('first_name', 'last_name', 'address', 'country', 'city', 'postal_code')
+    search_fields = ('first_name', 'last_name', 'address', 'country', 'city', 'postal_code', 'product__title')
     actions = ['delete_selected_orders']
 
-    def get_product(self, obj):
-        return obj.product.title if obj.product else 'No product'
-
-    get_product.short_description = 'Product'
+    def get_books_list(self, obj):
+        books = obj.product.all()
+        books_list = ', '.join(book.title for book in books)
+        print(f"Order ID: {obj.id}, Books: {books_list}")
+        return books_list
+    get_books_list.short_description = 'Ordered Books'
 
     def delete_selected_orders(self, request, queryset):
         num_deleted, _ = queryset.delete()

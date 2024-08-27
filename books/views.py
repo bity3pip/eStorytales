@@ -81,28 +81,25 @@ def checkout_view(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            try:
-                order = form.save(commit=False)
-                order.user = request.user
-                order.save()
-                print(f"Order created with ID: {order.id}")
+            print("Cleaned data:", form.cleaned_data)
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
 
-                for card_item in card.items.all():
-                    OrderItem.objects.create(
-                        order=order,
-                        book=card_item.book,
-                        quantity=card_item.quantity
-                    )
+            book_ids_str = form.cleaned_data['book_ids']
+            book_ids = book_ids_str.split(',')
+            books = Book.objects.filter(id__in=book_ids)
+            order.product.set(books)
+            order.save()
 
-                    print(f"OrderItem created for book: {card_item.book.title}")
-                card.items.all().delete()
-                return redirect('complete-order')
-            except Exception as e:
-                print(f"Error: {e}")
+            card.items.all().delete()
+            return redirect('complete-order')
         else:
             print("Form errors:", form.errors)
     else:
-        form = OrderForm()
+        book_ids = card.items.values_list('book_id', flat=True)
+        book_ids_str = ','.join(map(str, book_ids))
+        form = OrderForm(initial={'book_ids': book_ids_str})
 
     return render(request, 'checkout.html', {'form': form, 'card': card})
 

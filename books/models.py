@@ -55,7 +55,7 @@ class BookReview(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey('Book', on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ManyToManyField(Book)
     first_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
