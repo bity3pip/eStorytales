@@ -23,7 +23,7 @@ class BookForm(forms.ModelForm):
 
     def clean_description(self):
         description = self.cleaned_data.get('description')
-        if description and len(description) > 500:
+        if description and len(description) > 1000:
             raise ValidationError('Description too long')
         return description
 
